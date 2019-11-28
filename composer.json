@@ -2,7 +2,7 @@
     "name": "rrbrr/rlog",
     "description": "record request log",
     "keywords": [
-        "request log,请求日志",
+        "request log",
         "table"
     ],      
     "license": "Apache-2.0",
