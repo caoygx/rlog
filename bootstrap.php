@@ -79,7 +79,7 @@ if (!function_exists('get_raw_headers')) {
 }
 
 if (!function_exists('get_http_request_data')) {
-    function get_http_request_data()
+    function get_http_request_data($ipWhiteList=[])
     {
         try {
             $isPost = $isGet = false;
@@ -112,8 +112,8 @@ if (!function_exists('get_http_request_data')) {
             if (empty($params)) $params['input'] = file_get_contents("php://input");
             $data['params'] = json_encode($params);
             $data['ip']     = get_client_ip_for_log();
-            $ipWhiteList    = ['127.0.0.1', '192.168.16.96', '127.0.0.1', '192.168.16.118'];
-            if (!empty($ipWhiteList) && !in_array($data['ip'], $ipWhiteList)) return;
+            //$ipWhiteList    = ['127.0.0.1', '192.168.16.96', '127.0.0.1', '192.168.16.118'];
+            if (!empty($ipWhiteList) && !in_array($data['ip'], $ipWhiteList)) return [];
             $detail            = array();
             $detail['request'] = $_REQUEST;
 

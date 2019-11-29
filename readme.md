@@ -18,7 +18,9 @@
 
 # 使用方法
 
-1. 修改application\index\behavior\Trace.php中 actionBegin()方法。里面可配置要屏蔽的url,以及定制一此要记录的信息。
+1. get_http_request_data(array $whiteList) 可以获取请求信息
+    white_list 可以指定哪些ip请求要做记录，比如只有公司ip访问才会有记录，这样方便公司开发人员随便拿到请求信息做调试。
+
 
 2. 增加队列，异步执行方法 addQueue(模块名，控制器名,方法名,参数)，这样会异步执行你需要的方法
 
