@@ -1,19 +1,8 @@
 <?php
 
-class RequestLog
+namespace rlog;
+class CurlLog
 {
-    protected $db;
-    function __construct($dbConfig)
-    {
-        $this->db = new \Medoo\Medoo([
-            'database_type' => 'mysql',
-            'database_name' => 'test',
-            'server'        => 'localhost',
-            'username'      => 'root',
-            'password'      => '123456'
-        ]);
-    }
-
     function get_raw_headers($raw = false)
     {
         $headers = [];
@@ -162,12 +151,18 @@ class RequestLog
         $sql = "INSERT INTO " . 'log_curl' . " (`url`,`method`,`detail`) VALUES('{$data['url']}','{$data['method']}','{$data['detail']}')";
 
         try {
-
-            $r        = $this->db->insert('log_request', $data);
+            $database = new \Medoo\Medoo([
+                'database_type' => 'mysql',
+                'database_name' => 'test',
+                'server'        => 'localhost',
+                'username'      => 'root',
+                'password'      => '123456'
+            ]);
+            $r        = $database->insert('log_request', $data);
         } catch (Exception $e) {
             var_dump($e->getMessage());
         }
-        $log_id = $this->db->id();
+        $log_id = $database->id();
         return $log_id;
 
     }
@@ -275,7 +270,4 @@ class RequestLog
         return $responseBody;
 
     }
-
 }
-
-
