@@ -3,7 +3,7 @@
   
 
 # 安装(install)
-1. composer require rrbrr/log
+1. composer require rrbrr/rlog
 2. 将根目录下db.sql中的表导入到数据库中
 
 
