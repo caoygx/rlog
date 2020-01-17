@@ -36,5 +36,5 @@ $white_list 参数可以指定哪些ip请求要做记录，比如只有公司ip�
 $data = [];
 $data['user_id'] = 123;
 $objCurl = new \rlog\CurlLog($dbConfig);
-$objCurl->curl_post($url,$data,$headers);
+$objCurl->curlPost($url,$data,$headers);
 ```

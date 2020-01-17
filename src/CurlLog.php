@@ -10,7 +10,7 @@ class CurlLog
         $this->db = new \Medoo\Medoo($dbConfig);
     }
 
-    function write_curl_request_log($url, $method, $requestData)
+    function writeCurlRequestLog($url, $method, $requestData)
     {
         $this->logId = 0;
         $data           = [];
@@ -26,7 +26,7 @@ class CurlLog
         return $this->logId;
     }
 
-    function write_curl_response_log($responseData)
+    function writeCurlResponseLog($responseData)
     {
         $data['response'] = $responseData;
         $r = $this->db->update('log_curl', $data,['id'=>$this->logId]);
@@ -74,13 +74,13 @@ class CurlLog
         }
         //代理
         //if(C('test_proxy')) {
-        curl_setopt($ch, CURLOPT_PROXY, '192.168.16.98:8888');
+        //curl_setopt($ch, CURLOPT_PROXY, '192.168.16.98:8888');
         //}
         $ret = curl_exec($ch);
         if (empty($ret)) {
             //var_dump(curl_error($ch)); // 查看报错信息
             try {
-                //write_curl_response_log(curl_error($ch));
+                //writeCurlResponseLog(curl_error($ch));
             } catch (Exception $e) {
 
             }
@@ -95,7 +95,7 @@ class CurlLog
             $requestBody = var_export($data, 1);
         }
         try {
-            $this->write_curl_request_log($url, 'post', $requestHeader . $requestBody);
+            $this->writeCurlRequestLog($url, 'post', $requestHeader . $requestBody);
         } catch (Exception $e) {
 
         }
@@ -106,7 +106,7 @@ class CurlLog
         $responseBody    = substr($ret, $header_size);
         //var_dump($responseHeaders);
         try {
-            $this->write_curl_response_log($ret);
+            $this->writeCurlResponseLog($ret);
         } catch (Exception $e) {
 
         }
