@@ -38,3 +38,7 @@ $data['user_id'] = 123;
 $objCurl = new \rlog\CurlLog($dbConfig);
 $objCurl->curlPost($url,$data,$headers);
 ```
+# 效果预览
+
+### 请求日志
+![请求日志](https://github.com/caoygx/ThinkphpLogAndErrorAlarm/raw/master/assets/request_log.png)
